@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Code Book for Processed Samsung Galaxy S smartphone Data</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Code Book for Processed Samsung Galaxy S smartphone Data</h1>
+
+<p>This document outlines the structure and details of the data in the text file &ldquo;TidyData.txt&rdquo; that was the output of a R script (run_analysis.R).  </p>
+
+<p><strong>This script did the following:</strong></p>
+
+<ol>
+<li> Linked to the site of Samsung Galaxy S data (<a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a>)</li>
+<li> Downloaded the zip file containing a data directory (&ldquo;UCI HAR Dataset&rdquo;) with the data included in various space separated text files.</li>
+<li> The data was extracted from the relevant text files and put into R dataframes for further processing (see &ldquo;Tidy Data Project.md&rdquo; for details).</li>
+<li> Merged the training and the test sets to create one data set.</li>
+<li> Extracted only the measurements on the mean and standard deviation for each measurement. </li>
+<li> Used descriptive activity names from the &ldquo;activity_labels.txt&rdquo; file to name the activities in the data set</li>
+<li> Labelled the data set with descriptive variable names for the means and SDs from the file in the data set (&ldquo;features.txt). </li>
+<li> Created a second, independent tidy data set with the average of each &#39;mean&#39; and &#39;std&#39; variable for each activity and subject. </li>
+</ol>
+
+<p>Further details about the original data set of the Samsung Galaxy S smartphone data is available from &rdquo;<a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a>&ldquo; and in the &quot;README.txt&rdquo; from the &ldquo;UCI HAR Dataset&rdquo; directory in the Zip file containing the original data.</p>
+
+<h2>Tidy Data Set</h2>
+
+<p><strong>The details of the structure and content of data in the file &ldquo;TidyData.txt&rdquo;:</strong></p>
+
+<p>The data is the average across the listed variable mean and SD attributes for 30 subjects within an age bracket of 19-48 years, and  six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING).</p>
+
+<p>The data was collected from a smartphone (Samsung Galaxy S II) attached on the waist of each subject using its embedded accelerometer and gyroscope.  The data captured consisted of 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz.  The original data set consisted of two subsets (train and test sets) randomly assigned so 70% of observations were in the train set and 30% in the test set.  More details on the data can be found at the URL link above.  Each of the train and test sets consisted of 561 columns of variables (attributes).</p>
+
+<p><strong>Details of the Tidy Data Set</strong></p>
+
+<p>The Tidy Data file consists of 180 rows and 81 columns.  The first column is the code for each subject (1-30).  The second column contains the names for the six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING).  Columns 3-81 contain the averages across subjects and activity for each of the mean and SD variables from the original data set.  So these columns represent the averages of a subset of the orginal 561 attributes in the original data set.  Columns 3 to 48 contain the averages for the &#39;mean&#39; variables and columns 49 to 81 contain the averages for the &#39;std&#39; variables.  Each row is the average of the &#39;mean&#39; and &#39;std&#39; attributes for each combination of subject and activity.</p>
+
+<p><strong>The column names in the Tidy Data Set are:</strong></p>
+
+<p>[1] &ldquo;SubjectCode&rdquo;                     &ldquo;ActivityName&rdquo;<br/>
+ [3] &ldquo;tBodyAcc.mean&hellip;X&rdquo;               &ldquo;tBodyAcc.mean&hellip;Y&rdquo;<br/>
+ [5] &ldquo;tBodyAcc.mean&hellip;Z&rdquo;               &ldquo;tGravityAcc.mean&hellip;X&rdquo;<br/>
+ [7] &ldquo;tGravityAcc.mean&hellip;Y&rdquo;            &ldquo;tGravityAcc.mean&hellip;Z&rdquo;<br/>
+ [9] &ldquo;tBodyAccJerk.mean&hellip;X&rdquo;           &ldquo;tBodyAccJerk.mean&hellip;Y&rdquo;<br/>
+[11] &ldquo;tBodyAccJerk.mean&hellip;Z&rdquo;           &ldquo;tBodyGyro.mean&hellip;X&rdquo;<br/>
+[13] &ldquo;tBodyGyro.mean&hellip;Y&rdquo;              &ldquo;tBodyGyro.mean&hellip;Z&rdquo;<br/>
+[15] &ldquo;tBodyGyroJerk.mean&hellip;X&rdquo;          &ldquo;tBodyGyroJerk.mean&hellip;Y&rdquo;<br/>
+[17] &ldquo;tBodyGyroJerk.mean&hellip;Z&rdquo;          &ldquo;tBodyAccMag.mean..&rdquo;<br/>
+[19] &ldquo;tGravityAccMag.mean..&rdquo;           &ldquo;tBodyAccJerkMag.mean..&rdquo;<br/>
+[21] &ldquo;tBodyGyroMag.mean..&rdquo;             &ldquo;tBodyGyroJerkMag.mean..&rdquo;<br/>
+[23] &ldquo;fBodyAcc.mean&hellip;X&rdquo;               &ldquo;fBodyAcc.mean&hellip;Y&rdquo;<br/>
+[25] &ldquo;fBodyAcc.mean&hellip;Z&rdquo;               &ldquo;fBodyAcc.meanFreq&hellip;X&rdquo;<br/>
+[27] &ldquo;fBodyAcc.meanFreq&hellip;Y&rdquo;           &ldquo;fBodyAcc.meanFreq&hellip;Z&rdquo;<br/>
+[29] &ldquo;fBodyAccJerk.mean&hellip;X&rdquo;           &ldquo;fBodyAccJerk.mean&hellip;Y&rdquo;<br/>
+[31] &ldquo;fBodyAccJerk.mean&hellip;Z&rdquo;           &ldquo;fBodyAccJerk.meanFreq&hellip;X&rdquo;<br/>
+[33] &ldquo;fBodyAccJerk.meanFreq&hellip;Y&rdquo;       &ldquo;fBodyAccJerk.meanFreq&hellip;Z&rdquo;<br/>
+[35] &ldquo;fBodyGyro.mean&hellip;X&rdquo;              &ldquo;fBodyGyro.mean&hellip;Y&rdquo;<br/>
+[37] &ldquo;fBodyGyro.mean&hellip;Z&rdquo;              &ldquo;fBodyGyro.meanFreq&hellip;X&rdquo;<br/>
+[39] &ldquo;fBodyGyro.meanFreq&hellip;Y&rdquo;          &ldquo;fBodyGyro.meanFreq&hellip;Z&rdquo;<br/>
+[41] &ldquo;fBodyAccMag.mean..&rdquo;              &ldquo;fBodyAccMag.meanFreq..&rdquo;<br/>
+[43] &ldquo;fBodyBodyAccJerkMag.mean..&rdquo;      &ldquo;fBodyBodyAccJerkMag.meanFreq..&rdquo;<br/>
+[45] &ldquo;fBodyBodyGyroMag.mean..&rdquo;         &ldquo;fBodyBodyGyroMag.meanFreq..&rdquo;<br/>
+[47] &ldquo;fBodyBodyGyroJerkMag.mean..&rdquo;     &ldquo;fBodyBodyGyroJerkMag.meanFreq..&rdquo;<br/>
+[49] &ldquo;tBodyAcc.std&hellip;X&rdquo;                &ldquo;tBodyAcc.std&hellip;Y&rdquo;<br/>
+[51] &ldquo;tBodyAcc.std&hellip;Z&rdquo;                &ldquo;tGravityAcc.std&hellip;X&rdquo;<br/>
+[53] &ldquo;tGravityAcc.std&hellip;Y&rdquo;             &ldquo;tGravityAcc.std&hellip;Z&rdquo;<br/>
+[55] &ldquo;tBodyAccJerk.std&hellip;X&rdquo;            &ldquo;tBodyAccJerk.std&hellip;Y&rdquo;<br/>
+[57] &ldquo;tBodyAccJerk.std&hellip;Z&rdquo;            &ldquo;tBodyGyro.std&hellip;X&rdquo;<br/>
+[59] &ldquo;tBodyGyro.std&hellip;Y&rdquo;               &ldquo;tBodyGyro.std&hellip;Z&rdquo;<br/>
+[61] &ldquo;tBodyGyroJerk.std&hellip;X&rdquo;           &ldquo;tBodyGyroJerk.std&hellip;Y&rdquo;<br/>
+[63] &ldquo;tBodyGyroJerk.std&hellip;Z&rdquo;           &ldquo;tBodyAccMag.std..&rdquo;<br/>
+[65] &ldquo;tGravityAccMag.std..&rdquo;            &ldquo;tBodyAccJerkMag.std..&rdquo;<br/>
+[67] &ldquo;tBodyGyroMag.std..&rdquo;              &ldquo;tBodyGyroJerkMag.std..&rdquo;<br/>
+[69] &ldquo;fBodyAcc.std&hellip;X&rdquo;                &ldquo;fBodyAcc.std&hellip;Y&rdquo;<br/>
+[71] &ldquo;fBodyAcc.std&hellip;Z&rdquo;                &ldquo;fBodyAccJerk.std&hellip;X&rdquo;<br/>
+[73] &ldquo;fBodyAccJerk.std&hellip;Y&rdquo;            &ldquo;fBodyAccJerk.std&hellip;Z&rdquo;<br/>
+[75] &ldquo;fBodyGyro.std&hellip;X&rdquo;               &ldquo;fBodyGyro.std&hellip;Y&rdquo;<br/>
+[77] &ldquo;fBodyGyro.std&hellip;Z&rdquo;               &ldquo;fBodyAccMag.std..&rdquo;<br/>
+[79] &ldquo;fBodyBodyAccJerkMag.std..&rdquo;       &ldquo;fBodyBodyGyroMag.std..&rdquo;<br/>
+[81] &ldquo;fBodyBodyGyroJerkMag.std..&rdquo;     </p>
+
+<p>Information on summarising the data further to get averages across all activities for each subject and all subjects for each activity is outlined in the &ldquo;Tidy Data Project.md&rdquo; file.</p>
+
+<p><strong>The first 6 rows and 5 columns of the Tidy Data set showing the averages of the first three &#39;mean&#39; attributes for the 6 activities of subject 1 is as follows:</strong></p>
+
+<p>SubjectCode       ActivityName tBodyAcc.mean&hellip;X tBodyAcc.mean&hellip;Y tBodyAcc.mean&hellip;Z<br/>
+1           1             LAYING         0.2215982      -0.040513953        -0.1132036<br/>
+2           1            SITTING         0.2612376      -0.001308288        -0.1045442<br/>
+3           1           STANDING         0.2789176      -0.016137590        -0.1106018<br/>
+4           1            WALKING         0.2773308      -0.017383819        -0.1111481<br/>
+5           1 WALKING_DOWNSTAIRS         0.2891883      -0.009918505        -0.1075662<br/>
+6           1   WALKING_UPSTAIRS         0.2554617      -0.023953149        -0.0973020    </p>
+
+</body>
+
+</html>
+
