@@ -1,12 +1,12 @@
 setwd("C:/Users/Peter/Documents/Data Scientist Toolbox/Getting and Cleaning Data/Project")
-install.packages("plyr")
+
 ##First create a temporary file to download the zip file to
 temp <- tempfile()
 
 ##Download the zipfile from the URL to the Working Directory
 fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(fileURL, temp, mode="wb")
-##Important to use 'mode = "wb' to ensure data is extractable
+##Important to use 'mode = "wb"' to ensure data is extractable
 
 ##unzip temp file to extract directory with data files to Working Directory
 unzip(temp)
@@ -57,9 +57,10 @@ Summary <- DataMerge[,-1]
 ##This is the dataframe of means & SDs with appropriate Activity Name labels
 
 ##summarising data by activity and subject averaging across all means & SD data variables
+##Need to ensure 'plyr' package is installed in R
 require(plyr)
 dat <- ddply(Summary, .(SubjectCode, ActivityName),numcolwise(mean))
-##write.table(dat, file = "TidyData.txt", sep = " ")
+write.table(dat, file = "TidyData.txt", sep = " ")
 tail(dat[,1:7],5)
 ##To get summary of averages across all activities for each subject repeat 'ddply'
 ## on 'dat' dataframe e.g 'dat1 <- ddply(dat, .(SubjectCode), numcolwise(mean))'
