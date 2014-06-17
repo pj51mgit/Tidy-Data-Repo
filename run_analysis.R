@@ -61,7 +61,6 @@ Summary <- DataMerge[,-1]
 require(plyr)
 dat <- ddply(Summary, .(SubjectCode, ActivityName),numcolwise(mean))
 write.table(dat, file = "TidyData.txt", sep = " ")
-tail(dat[,1:7],5)
 ##To get summary of averages across all activities for each subject repeat 'ddply'
 ## on 'dat' dataframe e.g 'dat1 <- ddply(dat, .(SubjectCode), numcolwise(mean))'
 ##This can be done after reading
