@@ -4,7 +4,7 @@ This document outlines the structure and details of the data in the text file "T
 
 **To get the 'TidyData.txt" as the required output of the script, R commands were run that:**
  
-1.  Linked to the site of Samsung Galaxy S data (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) ^[1].
+1.  Linked to the site of Samsung Galaxy S [data]^[1] (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
 2.  Downloaded and unzipped the zip file containing a data directory ("UCI HAR Dataset") with the data included in a number of space separated text files.
 
 **The 'run_analysis.R' script loaded to the Tidy Data repo, when run:**
@@ -16,7 +16,7 @@ This document outlines the structure and details of the data in the text file "T
 5.  Labels the data set with descriptive variable names for the means and SDs from the file "features.txt"" from within the "UCI HAR Dataset" Directory. 
 6.  Creates a second, independent tidy data set with the average of each 'mean' and 'std' attribute for each activity and subject.  The data was scaled by dividing values by their range, so resulting in dimensionless attributes.
 
-Further details about the original data set of the Samsung Galaxy S smartphone data are available from "http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones" ^[1] and in the "README.txt" from the "UCI HAR Dataset" Directory in the Zip file containing the original data.
+Further details about the original data set of the Samsung Galaxy S smartphone [data]^[1] are available from "http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones" and in the "README.txt" from the "UCI HAR Dataset" Directory in the Zip file containing the original data.
 
 Tidy Data Set
 --------------
