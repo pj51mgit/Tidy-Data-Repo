@@ -1,36 +1,27 @@
 Project to Extract Samsung Galaxy S Smartphone Data for Further Analysis
 =============================================================================
 
-The script ("run_analysis.R") connects to the data "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip" and downloads the zip file  first to a temporary file and from this extracts the data to the 'Working Directory' in R.
+The script uploaded to this GitHub repo extracts the data from the 'UCI HAR Dataset' that has previously been downloaded and unzipped to my 'Working Directory' in R from "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip".  
+
+This is as per the directions for the project: 
+**"The code should have a file run_analysis.R in the main directory that can be run as long as the Samsung data is in your working directory."**
 
 This script requires the 'plyr' package, which must be installed before the script is run.
 
 
-Link To and Download Data
+Location of Working Directory
 -----------------------------
-The first lines of the script connect to the URL where the data is located and downloads the zip file to a temporary file from which the data is extracted:
+The first line points to my Working Directory which contains the Data Directory 'UCI HAR Dataset' from which the needed data will be loaded from the contained text files
 
 
 ```r
 setwd("C:/Users/Peter/Documents/Data Scientist Toolbox/Getting and Cleaning Data/Project")
-##First create a temporary file to download the zip file to
-temp <- tempfile()
-
-##Download the zipfile from the URL to the tempfile and unzip the file to load the ##data directory to the Working Directory in the R sesssion
-
-fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(fileURL, temp, mode="wb")
-##Important to use 'mode = "wb' to ensure data is extractable
-
-##unzip temp file to extract directory with data files to Working Directory
-unzip(temp)
-unlink(temp)
 ```
 
 Extract Data into Dataframes
 ------------------------------
 
-The next set of lines in the script extracts the necessary files from the downloaded data directory from the Zip file to set up the necessary 'R' objects to combine the training and the test sets using 'rbind' to create one data set.
+The next set of lines in the script extracts the necessary files from the downloaded data directory to set up the necessary 'R' objects to combine the training and the test sets using 'rbind' to create one data set.
 
 
 
@@ -122,6 +113,13 @@ The script uses the 'plyr' package, which must be installed, if not already inst
 ```r
 ##Need to ensure 'plyr' package is installed in R
 require(plyr)
+```
+
+```
+## Loading required package: plyr
+```
+
+```r
 dat <- ddply(Summary, .(SubjectCode, ActivityName),numcolwise(mean))
 ## 'dat' is the tidy data set as a dataframe
 ```
