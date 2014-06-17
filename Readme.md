@@ -1,7 +1,7 @@
 Project to Extract Samsung Galaxy S Smartphone Data for Further Analysis
 =============================================================================
 
-The script uploaded to this GitHub repo extracts the data from the 'UCI HAR Dataset' that has previously been downloaded and unzipped to my 'Working Directory' in R from "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip".  
+The script uploaded to my GitHub Tidy Data repo extracts the data from the 'UCI HAR Dataset' that has previously been downloaded and unzipped to my 'Working Directory' in R from "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip".  
 
 This is as per the directions for the project: 
 **"The code should have a file run_analysis.R in the main directory that can be run as long as the Samsung data is in your working directory."**
@@ -113,13 +113,6 @@ The script uses the 'plyr' package, which must be installed, if not already inst
 ```r
 ##Need to ensure 'plyr' package is installed in R
 require(plyr)
-```
-
-```
-## Loading required package: plyr
-```
-
-```r
 dat <- ddply(Summary, .(SubjectCode, ActivityName),numcolwise(mean))
 ## 'dat' is the tidy data set as a dataframe
 ```
